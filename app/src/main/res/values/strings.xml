@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Tap The Dot!</string>
+    <string name="tap_the_dot">Tap The Dot!</string>
+    <string name="textview">TextView</string>
+    <string name="touch_logs">Touch Logs</string>
+    <string name="log_out">Log Out</string>
+</resources>

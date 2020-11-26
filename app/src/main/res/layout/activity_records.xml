@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".Records">
+
+    <TextView
+        android:id="@+id/pageTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="79dp"
+        tools:text="Top Taps">
+        android:id="@+id/textView"
+        android:layout_width="52dp"
+        android:layout_height="173dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Tap Scores"
+    </TextView>
+
+    <ListView
+        android:id="@+id/simpleListView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:dividerHeight="1dp"
+
+        tools:context="abhiandroid.com.listexample.MainActivity" />
+
+
+</LinearLayout>

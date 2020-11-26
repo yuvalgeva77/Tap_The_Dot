@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".Menu">
+
+    <TextView
+        android:id="@+id/nameTextBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="-120dp"
+        android:layout_marginBottom="50dp"
+        android:gravity="center_horizontal|left"
+        android:text="@string/textview"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.074"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/playBotton"
+        android:layout_width="180dp"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:onClick="game"
+        android:text="Play!" />
+
+    <Button
+        android:id="@+id/recordsBotton"
+        android:layout_width="180dp"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:onClick="records"
+        android:text="Top Score Board" />
+
+    <Button
+        android:id="@+id/logsBotton"
+        android:layout_width="180dp"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:onClick="logs"
+        android:text="@string/touch_logs" />
+
+    <Button
+        android:id="@+id/logOutBotton"
+        android:layout_width="180dp"
+        android:layout_height="80dp"
+        android:gravity="center|clip_vertical|center_horizontal"
+        android:onClick="logOut"
+        android:text="@string/log_out" />
+</LinearLayout>
