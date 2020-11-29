@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -45,7 +46,10 @@ public class records extends AppCompatActivity {
     }
     private void displayTop10() {
         loadScores();
+        TextView textView = findViewById(R.id.pageTitle);
+        textView.setText("Top 10 Scores:");
         listView=findViewById(R.id.simpleListView);
+//        listView.addHeaderView(textView);
         ArrayList<String> top10list=new ArrayList<>();
 
         for(int i=0;i<Math.min(10,scoreList.size());i++) {

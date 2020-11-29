@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,10 +23,10 @@ import java.util.List;
 import static java.lang.reflect.Array.set;
 
 public class game extends AppCompatActivity {
+    public static  ArrayList<tapData> TAP_DATA =null ;
     public static String USER_NAME ="" ;
     int score=0;
     ArrayList<gameScore> scoreList;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +39,34 @@ public class game extends AppCompatActivity {
 //        score=0;
         TextView textView = findViewById(R.id.scoreText);
         textView.setText( USER_NAME+": "+ score);
+        TAP_DATA = new ArrayList<tapData>();
 
     }
+    //----------LOGS------
+    public void tap(View view){
+        tapData newTap=new tapData(0,0,true);
+        TAP_DATA.add(newTap);
+        score= score+5;
+        TextView textView = findViewById(R.id.scoreText);
+        textView.setText( USER_NAME+": "+ score);
+    }
+
+    //-----------RECORS ---------
     public void finishGame(View view){
+        //-----------RECORS ---------
         Random rand = new Random();
         score= rand.nextInt(1000);
         addScore();
         TextView textView = findViewById(R.id.scoreText);
         textView.setText( USER_NAME+": "+ score);
+
+        //----log--------
+        Intent intent = new Intent(this, Menu.class);
+        intent.putExtra(USER_NAME, USER_NAME);
+        Bundle bundle = new Bundle();
+        bundle.putParcelableArrayList("TAP_DATA", TAP_DATA);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
     private void addScore() {
         loadScores();
@@ -58,8 +79,6 @@ public class game extends AppCompatActivity {
         }
         saveScores();
     }
-
-
     private void saveScores() {
     SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
     SharedPreferences.Editor editor = sharedPreferences.edit();
