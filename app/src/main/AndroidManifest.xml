@@ -11,8 +11,8 @@
         android:theme="@style/Theme.TapTheDot">
         <activity android:name=".game" android:parentActivityName=".Menu"></activity>
         <activity android:name=".logs"  android:parentActivityName=".Menu"/>
-        <activity android:name=".Records"  android:parentActivityName=".Menu"/>
-        <activity android:name=".Menu">
+        <activity android:name=".records"  android:parentActivityName=".Menu"/>
+        <activity android:name=".Menu" >
             android:parentActivityName=".MainActivity">
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data

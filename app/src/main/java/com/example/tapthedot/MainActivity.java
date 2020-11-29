@@ -32,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
         String nameText = name.getText().toString();
         String verifytext = verifyName.getText().toString();
         if(nameText.equals(verifytext)&& !nameText.equals("")){
-            intent.putExtra(USER_NAME, nameText);
+            USER_NAME=nameText;
+            intent.putExtra(USER_NAME, USER_NAME);
             startActivity(intent);
         }
         else{

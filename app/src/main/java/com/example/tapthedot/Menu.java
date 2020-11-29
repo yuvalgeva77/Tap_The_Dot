@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -17,12 +16,13 @@ public class Menu extends AppCompatActivity {
 
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
-        String userName = intent.getStringExtra(MainActivity.USER_NAME);
-        USER_NAME=userName;
+        if(intent.getStringExtra(MainActivity.USER_NAME) != null) {
+            USER_NAME = intent.getStringExtra(MainActivity.USER_NAME);
+
+        }
         // Capture the layout's TextView and set the string as its text
         TextView textView = findViewById(R.id.nameTextBox);
-        textView.setText("Welcome, " + userName);
-
+        textView.setText("Welcome, " + USER_NAME);
     }
 
     public void logOut(View view) {
@@ -31,7 +31,7 @@ public class Menu extends AppCompatActivity {
 
     }
     public void records(View view) {
-        Intent intent = new Intent(this, Records.class);
+        Intent intent = new Intent(this, records.class);
         intent.putExtra(USER_NAME, USER_NAME);
         startActivity(intent);
     }

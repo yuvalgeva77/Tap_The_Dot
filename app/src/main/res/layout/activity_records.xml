@@ -7,20 +7,21 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".Records">
+    tools:context=".records">
 
     <TextView
         android:id="@+id/pageTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="79dp"
-        tools:text="Top Taps">
+        android:layout_width="match_parent"
+        android:layout_height="96dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        tools:text="Top Scores">
         android:id="@+id/textView"
         android:layout_width="52dp"
         android:layout_height="173dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="Tap Scores"
-    </TextView>
+        android:text="Top Scores"</TextView>
 
     <ListView
         android:id="@+id/simpleListView"
