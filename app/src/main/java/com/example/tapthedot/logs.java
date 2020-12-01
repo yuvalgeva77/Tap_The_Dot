@@ -16,10 +16,12 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class logs extends AppCompatActivity {
+public class logs extends AppCompatActivity implements fragment_toolbar.FragmentAListener {
     public static String USER_NAME ="" ;
     private ListView listView;
     ArrayList<tapData> TAP_DATA=null;
+    private fragment_toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,11 @@ public class logs extends AppCompatActivity {
 
 
             displayTapData();
+        //toolber
+        toolbar = new fragment_toolbar();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container_a, toolbar)
+                .commit();
 
 
         }
@@ -67,4 +74,13 @@ public class logs extends AppCompatActivity {
             }
 
 
-        }
+    @Override
+    public void onInputASent(CharSequence input) {
+
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
+}

@@ -8,10 +8,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  implements fragment_toolbar.FragmentAListener{
 
     public static String USER_NAME ="" ;
-
+    private fragment_toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +20,12 @@ public class MainActivity extends AppCompatActivity {
         EditText verifyName = (EditText) findViewById(R.id.verifyNameTextBox);
         name.setText("");
         verifyName.setText("");
+        //toolber
+        toolbar= new fragment_toolbar();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container_a, toolbar)
+                .commit();
+
     }
 
     /** Called when the user taps the Send button */
@@ -49,4 +55,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onInputASent(CharSequence input) {
+
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
 }

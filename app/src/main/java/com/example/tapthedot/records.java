@@ -13,10 +13,11 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class records extends AppCompatActivity {
+public class records extends AppCompatActivity implements fragment_toolbar.FragmentAListener {
     public static String USER_NAME ="" ;
     private ListView listView;
     ArrayList<gameScore> scoreList;
+    private fragment_toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,11 @@ public class records extends AppCompatActivity {
         Intent intent = getIntent();
         String userName = intent.getStringExtra(Menu.USER_NAME);
         USER_NAME=userName;
+        //toolber
+        toolbar = new fragment_toolbar();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container_a, toolbar)
+                .commit();
 
     }
     private void loadScores() {
@@ -62,4 +68,13 @@ public class records extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onInputASent(CharSequence input) {
+
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
 }

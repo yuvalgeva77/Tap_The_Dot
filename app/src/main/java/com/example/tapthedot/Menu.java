@@ -9,9 +9,11 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class Menu extends AppCompatActivity {
+public class Menu extends AppCompatActivity implements fragment_toolbar.FragmentAListener{
     private static  ArrayList<tapData> TAP_DATA = null ;
     public static String USER_NAME ="" ;
+    private fragment_toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +28,11 @@ public class Menu extends AppCompatActivity {
         // Capture the layout's TextView and set the string as its text
         TextView textView = findViewById(R.id.nameTextBox);
         textView.setText("Welcome, " + USER_NAME);
-
+        //toolber
+        toolbar = new fragment_toolbar();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container_a, toolbar)
+                .commit();
         //---------------
 //        Bundle bundle = getIntent().getExtras();
 //        if ( intent.getParcelableExtra("TAP_DATA") != null) {
@@ -70,5 +76,15 @@ public class Menu extends AppCompatActivity {
         Intent intent = new Intent(this, game.class);
         intent.putExtra(USER_NAME, USER_NAME);
         startActivity(intent);
+    }
+
+    @Override
+    public void onInputASent(CharSequence input) {
+
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
     }
 }

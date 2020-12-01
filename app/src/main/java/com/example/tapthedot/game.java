@@ -22,11 +22,13 @@ import java.util.List;
 
 import static java.lang.reflect.Array.set;
 
-public class game extends AppCompatActivity {
+public class game extends AppCompatActivity implements fragment_toolbar.FragmentAListener {
     public static  ArrayList<tapData> TAP_DATA =null ;
     public static String USER_NAME ="" ;
     int score=0;
     ArrayList<gameScore> scoreList;
+    private fragment_toolbar toolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,11 @@ public class game extends AppCompatActivity {
         TextView textView = findViewById(R.id.scoreText);
         textView.setText( USER_NAME+": "+ score);
         TAP_DATA = new ArrayList<tapData>();
+        //toolber
+        toolbar = new fragment_toolbar();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container_a, toolbar)
+                .commit();
 
     }
     //----------LOGS------
@@ -99,6 +106,16 @@ public class game extends AppCompatActivity {
             scoreList = new ArrayList<gameScore>();
         }
         Toast.makeText(game.this,"loadScores LOADED",Toast.LENGTH_LONG).show();
+
+    }
+
+    @Override
+    public void onInputASent(CharSequence input) {
+
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
 }

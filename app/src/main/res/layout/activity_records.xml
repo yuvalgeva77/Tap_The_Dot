@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,27 +9,40 @@
     android:orientation="vertical"
     tools:context=".records">
 
+    <FrameLayout
+        android:id="@+id/container_a"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="16dp">
+
+    </FrameLayout>
+
     <TextView
         android:id="@+id/pageTitle"
         android:layout_width="match_parent"
-        android:layout_height="96dp"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        tools:text="Top Scores">
-        android:id="@+id/textView"
-        android:layout_width="52dp"
-        android:layout_height="173dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="Top Scores"</TextView>
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/container_a"
+        app:layout_constraintVertical_bias="0.173"
+        tools:text="Top Scores"></TextView>
 
     <ListView
         android:id="@+id/simpleListView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:dividerHeight="1dp"
-
+        android:background="#902196F3"
+        android:dividerHeight="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pageTitle"
+        app:layout_constraintVertical_bias="0.124"
         tools:context="abhiandroid.com.listexample.MainActivity" />
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
