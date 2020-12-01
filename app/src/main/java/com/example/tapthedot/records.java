@@ -15,8 +15,9 @@ import java.util.ArrayList;
 
 public class records extends AppCompatActivity implements fragment_toolbar.FragmentAListener {
     public static String USER_NAME ="" ;
+    ArrayList<tapData> TAP_DATA=null;
     private ListView listView;
-    ArrayList<gameScore> scoreList;
+    private  static ArrayList<gameScore> scoreList;
     private fragment_toolbar toolbar;
 
     @Override
@@ -31,6 +32,9 @@ public class records extends AppCompatActivity implements fragment_toolbar.Fragm
         Intent intent = getIntent();
         String userName = intent.getStringExtra(Menu.USER_NAME);
         USER_NAME=userName;
+        if(intent.getExtras().getParcelableArrayList("TAP_DATA")!=null) {
+            TAP_DATA = getIntent().getExtras().getParcelableArrayList("TAP_DATA");
+        }
         //toolber
         toolbar = new fragment_toolbar();
         getSupportFragmentManager().beginTransaction()

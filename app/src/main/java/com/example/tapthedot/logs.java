@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class logs extends AppCompatActivity implements fragment_toolbar.FragmentAListener {
     public static String USER_NAME ="" ;
     private ListView listView;
-    ArrayList<tapData> TAP_DATA=null;
+    private static ArrayList<tapData> TAP_DATA=null;
     private fragment_toolbar toolbar;
 
     @Override
@@ -46,8 +46,6 @@ public class logs extends AppCompatActivity implements fragment_toolbar.Fragment
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container_a, toolbar)
                 .commit();
-
-
         }
 
 

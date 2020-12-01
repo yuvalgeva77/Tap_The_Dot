@@ -18,13 +18,13 @@ public class Menu extends AppCompatActivity implements fragment_toolbar.Fragment
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
         if (intent.getStringExtra(MainActivity.USER_NAME) != null) {
             USER_NAME = intent.getStringExtra(MainActivity.USER_NAME);
-
         }
+        if(getIntent()!=null&&getIntent().getExtras()!=null&&getIntent().getExtras().getParcelableArrayList("TAP_DATA")!=null) {
+            TAP_DATA = getIntent().getExtras().getParcelableArrayList("TAP_DATA");}
         // Capture the layout's TextView and set the string as its text
         TextView textView = findViewById(R.id.nameTextBox);
         textView.setText("Welcome, " + USER_NAME);
@@ -33,16 +33,6 @@ public class Menu extends AppCompatActivity implements fragment_toolbar.Fragment
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container_a, toolbar)
                 .commit();
-        //---------------
-//        Bundle bundle = getIntent().getExtras();
-//        if ( intent.getParcelableExtra("TAP_DATA") != null) {
-////            TAP_DATA = (ArrayList<tapData>) bundle.getSerializable("TAP_DATA");
-            //}
-
-//        }
-
-
-
     }
 
     public void logOut(View view) {
@@ -56,14 +46,6 @@ public class Menu extends AppCompatActivity implements fragment_toolbar.Fragment
         startActivity(intent);
     }
     public void logs(View view) {
-        if (getIntent()!=null&&getIntent().getStringExtra(game.USER_NAME) != null) {
-            USER_NAME = getIntent().getStringExtra(game.USER_NAME);
-        }
-        if(getIntent()!=null&&getIntent().getExtras()!=null&&getIntent().getExtras().getParcelableArrayList("TAP_DATA")!=null) {
-            TAP_DATA = getIntent().getExtras().getParcelableArrayList("TAP_DATA");
-        }
-
-//--------------
         Intent intent = new Intent(this, logs.class);
         intent.putExtra(USER_NAME, USER_NAME);
         Bundle bundle = new Bundle();
