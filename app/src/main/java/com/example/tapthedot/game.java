@@ -48,6 +48,8 @@ public class game extends AppCompatActivity implements fragment_toolbar.Fragment
                 .replace(R.id.container_a, toolbar)
                 .commit();
 
+        //-----------------------game ----------
+
     }
     //----------LOGS------
     public void tap(View view){
