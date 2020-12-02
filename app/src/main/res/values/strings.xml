@@ -11,4 +11,5 @@
     <string name="error">error</string>
     <string name="finish">finish</string>
     <string name="tap">Tap</string>
+    <string name="tapBotton">tap!</string>
 </resources>

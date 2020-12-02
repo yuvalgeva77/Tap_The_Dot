@@ -5,19 +5,19 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class tapData implements Parcelable {
-    int location;
-    int time;
+    int x;
+    int y;
     boolean success;
 
-    public tapData(int location, int time, boolean success) {
-        this.location = location;
-        this.time = time;
+    public tapData(int x, int y, boolean success) {
+        this.x = x;
+        this.y = y;
         this.success = success;
     }
 
     protected tapData(Parcel in) {
-        location = in.readInt();
-        time = in.readInt();
+        x = in.readInt();
+        y = in.readInt();
         success = in.readByte() != 0;
     }
 
@@ -36,26 +36,26 @@ public class tapData implements Parcelable {
     @Override
     public String toString() {
         return
-                "location=" + location +
-                ", time=" + time +
+                "x=" + x +
+                ", y=" + y +
                 ", success=" + success
                ;
     }
 
     public int getLocation() {
-        return location;
+        return x;
     }
 
     public void setLocation(int location) {
-        this.location = location;
+        this.x = location;
     }
 
-    public int getTime() {
-        return time;
+    public int getY() {
+        return y;
     }
 
-    public void setTime(int time) {
-        this.time = time;
+    public void setY(int y) {
+        this.y = y;
     }
 
     public boolean isSuccess() {
@@ -74,8 +74,8 @@ public class tapData implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(location);
-        dest.writeInt(time);
+        dest.writeInt(x);
+        dest.writeInt(y);
         dest.writeByte((byte) (success ? 1 : 0));
     }
 
