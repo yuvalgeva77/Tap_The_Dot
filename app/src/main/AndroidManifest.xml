@@ -19,7 +19,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TapTheDot">
+        android:theme="@style/Theme.TapTheDot"
+        android:usesCleartextTraffic="true">
         <activity android:name=".game"></activity>
         <activity android:name=".logs"  android:parentActivityName=".Menu"/>
         <activity android:name=".records"  android:parentActivityName=".Menu"/>

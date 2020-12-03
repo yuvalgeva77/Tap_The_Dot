@@ -16,9 +16,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -36,10 +40,13 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 
+import javax.security.auth.callback.Callback;
+
 public class fragment_toolbar extends Fragment {
     private String TAG = "TOPBAR";
     private FragmentAListener listener;
-    private TextView wifiText, gpsText, timeText, shekelText;
+    private TextView wifiText, gpsText;
+    WebView time, shekel;
     private FusedLocationProviderClient fusedLocationProviderClient;
     LocationRequest locationRequest;
     LocationCallback locationCallBack;
@@ -54,15 +61,20 @@ public class fragment_toolbar extends Fragment {
         View v = inflater.inflate(R.layout.fragment_toolbar, container, false);
         wifiText = v.findViewById(R.id.wifiName);
         gpsText = v.findViewById(R.id.gpsText);
-        timeText = v.findViewById(R.id.TimeText);
-        shekelText = v.findViewById(R.id.ShekelRateText);
+        time = v.findViewById(R.id.TimeText);
+        shekel = v.findViewById(R.id.ShekelRate);
 //        IntentFilter intentFilter = new IntentFilter();
 //        intentFilter.addAction(WifiManager.SUPPLICANT_CONNECTION_CHANGE_ACTION);
-        wifiText.setText("wifi");
-        gpsText.setText("wifi");
-        timeText.setText("wifi");
-        shekelText.setText("wifi");
+        //clock
+        WebSettings webSettingTimes = time.getSettings();
+        webSettingTimes.setJavaScriptEnabled(true);
+        time.setWebViewClient(new Callback());
+        WebSettings webSettingsShekel = shekel.getSettings();
+        webSettingsShekel.setJavaScriptEnabled(true);
+        shekel.setWebViewClient(new Callback());
 
+        time.loadUrl("http://172.16.8.2:80/");
+        shekel.loadUrl("http://172.16.8.2:80/");
 
         //gps
         //location check definitions
@@ -177,6 +189,13 @@ public class fragment_toolbar extends Fragment {
                 gpsText.setText("no premission");
 
             }
+        }
+    }
+
+    private class Callback extends WebViewClient {
+        @Override
+        public boolean shouldOverrideKeyEvent(WebView view, KeyEvent event) {
+            return false;
         }
     }
 }
