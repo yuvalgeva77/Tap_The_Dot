@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import java.util.Random;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -33,11 +35,13 @@ public class game extends AppCompatActivity implements fragment_toolbar.Fragment
     private  TextView scoreText;
     private  TextView timeText;
     private Button tapBotton;
-    private ImageView screen;
+    private View screen;
     private static final String new_LocationTAG = "new_Location";
-    private int screenWidth = 300;
-    private int screenHeight = 300;
+    private int    screenBottom, screenRight, screenTop, screenLeft,screenHeight,screenWidth;
     Boolean firstTurn=true;
+    Random random;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,16 +62,29 @@ public class game extends AppCompatActivity implements fragment_toolbar.Fragment
         timeText=findViewById(R.id.timeText);
         tapBotton=findViewById(R.id.tapBotton);
         screen =findViewById(R.id.screen);
+        screen.post(new Runnable() {
+            @Override
+            public void run() {
+                screenBottom= screen.getBottom(); //
+                screenRight= screen.getRight();
+                screenTop=screen.getTop();
+                screenLeft=screen.getLeft();
+                screenWidth= screen.getMeasuredWidth();
+                screenHeight= screen.getMeasuredHeight();
+                restartTap();
+
+            }
+
+        });
         score=0;
         scoreText.setText( USER_NAME+"'s score:"+": "+ score);
         time=3;
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        screenWidth = size.x;
-        screenHeight = size.y;
         firstTurn=true;
-        restartTap();
+        random = new Random();
+//        restartTap();
 
 
         //-----------------------game ----------
@@ -75,7 +92,6 @@ public class game extends AppCompatActivity implements fragment_toolbar.Fragment
     }
     //----------LOGS------
     public void tap(View view){
-
         tapData newTap=new tapData(tapBotton.getWidth(),tapBotton.getHeight(),true);
         tapBotton.setVisibility(View.INVISIBLE);
         TAP_DATA.add(newTap);
@@ -95,22 +111,14 @@ public class game extends AppCompatActivity implements fragment_toolbar.Fragment
         }
         timeText.setText(Double.toString(time));
         tapBotton.setVisibility(View.VISIBLE);
-        // Based on position of our candy:
-        Random random = new Random();
-        // Understand nextInt(N) will go from 0 -> N-1, also are you trying to control where it can go?
-        //TODO:FIX
-        float newX = (float) random.nextInt(screen.getLeft() - 10);
-        float newY = (float) random.nextInt(screen.getTop() - 10);
-        while ( newX >= screen.getLeft() || newY >= screen.getTop() || newX <= 0 || newY <= 0) {
-            newX = (float) random.nextInt(screen.getLeft() - 10);
-            newY = (float) random.nextInt(screen.getTop() - 10);
-        }
-//TODO I didn't write it, but you need to check these float values if they   exceed the screen width and the screen length. */
-        // Sout to check coordinates
-        Log.d(new_LocationTAG,"x:"+newX+", y:"+newY);
-        // To change margins:
-        tapBotton.setX(newX);
-        tapBotton.setY(newY);
+        int buttonwidth = tapBotton.getWidth();
+        int buttonheight = tapBotton.getHeight();
+        float  newOffsetX = (float) random.nextInt(screenWidth-buttonwidth );
+        float   newOffsetY = (float) random.nextInt(screenHeight-buttonheight);
+//     Log.d(new_LocationTAG,"x:"+newX+", y:"+newY);
+
+        tapBotton.setX(newOffsetX+screenLeft);
+        tapBotton.setY(newOffsetY+screenTop);
         startCoundown(time);
 
     }
@@ -177,4 +185,6 @@ public class game extends AppCompatActivity implements fragment_toolbar.Fragment
     public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
+
+
 }

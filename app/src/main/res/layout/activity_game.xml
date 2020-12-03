@@ -43,20 +43,6 @@
         app:layout_constraintVertical_bias="0.147"
         tools:text="0" />
 
-    <Button
-        android:id="@+id/tapBotton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="tap"
-        android:text="@string/tap"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/view"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@+id/view"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.569" />
-
     <FrameLayout
         android:id="@+id/container_a"
         android:layout_width="match_parent"
@@ -67,7 +53,7 @@
     </FrameLayout>
 
     <View
-        android:id="@+id/view"
+        android:id="@+id/screen"
         android:layout_width="380dp"
         android:layout_height="440dp"
         android:background="#4503A9F4"
@@ -78,21 +64,17 @@
         app:layout_constraintTop_toTopOf="@+id/container_a"
         app:layout_constraintVertical_bias="0.785" />
 
-    <ImageView
-        android:id="@+id/screen"
-        android:layout_width="295dp"
-        android:layout_height="456dp"
-        android:layout_marginStart="58dp"
-        android:layout_marginLeft="58dp"
-        android:layout_marginTop="112dp"
-        android:layout_marginEnd="58dp"
-        android:layout_marginRight="58dp"
-        android:layout_marginBottom="35dp"
+    <Button
+        android:id="@+id/tapBotton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="tap"
+        android:text="@string/tap"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/backgrounds/scenic"
-        android:contentDescription="TODO" />
+        app:layout_constraintVertical_bias="0.569" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
