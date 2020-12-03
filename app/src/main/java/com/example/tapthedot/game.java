@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.nfc.Tag;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
@@ -29,7 +30,7 @@ public class game extends AppCompatActivity implements fragment_toolbar.Fragment
     public static  ArrayList<tapData> TAP_DATA =null ;
     public static String USER_NAME ="" ;
     private int score;
-    private double time;
+    private long time;
     ArrayList<gameScore> scoreList;
     private fragment_toolbar toolbar;
     private  TextView scoreText;
@@ -39,7 +40,9 @@ public class game extends AppCompatActivity implements fragment_toolbar.Fragment
     private static final String new_LocationTAG = "new_Location";
     private int    screenBottom, screenRight, screenTop, screenLeft,screenHeight,screenWidth;
     Boolean firstTurn=true;
+    TextView gameOverText;
     Random random;
+    CountDownTimer timer;
 
 
 
@@ -60,6 +63,8 @@ public class game extends AppCompatActivity implements fragment_toolbar.Fragment
                 .commit();
         scoreText = findViewById(R.id.scoreText);
         timeText=findViewById(R.id.timeText);
+        gameOverText=findViewById(R.id.gameOverText);
+        gameOverText.setVisibility(View.INVISIBLE);
         tapBotton=findViewById(R.id.tapBotton);
         screen =findViewById(R.id.screen);
         screen.post(new Runnable() {
@@ -78,7 +83,7 @@ public class game extends AppCompatActivity implements fragment_toolbar.Fragment
         });
         score=0;
         scoreText.setText( USER_NAME+"'s score:"+": "+ score);
-        time=3;
+        time=(long)0.0;
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
@@ -92,22 +97,24 @@ public class game extends AppCompatActivity implements fragment_toolbar.Fragment
     }
     //----------LOGS------
     public void tap(View view){
-        tapData newTap=new tapData(tapBotton.getWidth(),tapBotton.getHeight(),true);
+        timer.cancel();
+        tapData newTap=new tapData(tapBotton.getX(),tapBotton.getY(),true);
         tapBotton.setVisibility(View.INVISIBLE);
         TAP_DATA.add(newTap);
         score= score+5;
-        scoreText.setText( USER_NAME+"'s score:"+": "+ score);
+        scoreText.setText( USER_NAME+"'s score:"+" "+ score);
         restartTap();
 
 
     }
     public void restartTap(){
+
         if(firstTurn){
             time=3;
             firstTurn=false;
         }
         else {
-        time=time*0.95;
+        time=time*95/100;
         }
         timeText.setText(Double.toString(time));
         tapBotton.setVisibility(View.VISIBLE);
@@ -115,16 +122,29 @@ public class game extends AppCompatActivity implements fragment_toolbar.Fragment
         int buttonheight = tapBotton.getHeight();
         float  newOffsetX = (float) random.nextInt(screenWidth-buttonwidth );
         float   newOffsetY = (float) random.nextInt(screenHeight-buttonheight);
-//     Log.d(new_LocationTAG,"x:"+newX+", y:"+newY);
-
         tapBotton.setX(newOffsetX+screenLeft);
         tapBotton.setY(newOffsetY+screenTop);
         startCoundown(time);
 
     }
 
-    private void startCoundown(Double time) {
-        timeText.setText(String.format("timer: %.2f seconds", time));
+    private void startCoundown(long time) {
+        timer=new CountDownTimer(time*1000,1) {
+
+            public void onTick(long millisUntilFinished) {
+                timeText.setText(String.format("%d:%2d ", millisUntilFinished/1000,(millisUntilFinished/10)%100));
+
+//                timeText.setText("seconds remaining: " + millisUntilFinished / 1000);
+            }
+
+            public void onFinish() {
+                timeText.setText("Times Up!");
+                tapBotton.setVisibility(View.INVISIBLE);
+                gameOverText.setVisibility(View.VISIBLE);
+                addScore();
+            }
+        }.start();
+
 
     }
 

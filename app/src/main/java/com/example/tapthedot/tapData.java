@@ -5,11 +5,11 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class tapData implements Parcelable {
-    int x;
-    int y;
+    float x;
+    float y;
     boolean success;
 
-    public tapData(int x, int y, boolean success) {
+    public tapData(float x, float y, boolean success) {
         this.x = x;
         this.y = y;
         this.success = success;
@@ -42,7 +42,7 @@ public class tapData implements Parcelable {
                ;
     }
 
-    public int getLocation() {
+    public float getLocation() {
         return x;
     }
 
@@ -50,11 +50,11 @@ public class tapData implements Parcelable {
         this.x = location;
     }
 
-    public int getY() {
+    public float getY() {
         return y;
     }
 
-    public void setY(int y) {
+    public void setY(float y) {
         this.y = y;
     }
 
@@ -74,8 +74,8 @@ public class tapData implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(x);
-        dest.writeInt(y);
+        dest.writeFloat(x);
+        dest.writeFloat(y);
         dest.writeByte((byte) (success ? 1 : 0));
     }
 

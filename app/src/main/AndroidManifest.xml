@@ -20,7 +20,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TapTheDot">
-        <activity android:name=".game" android:parentActivityName=".Menu"></activity>
+        <activity android:name=".game"></activity>
         <activity android:name=".logs"  android:parentActivityName=".Menu"/>
         <activity android:name=".records"  android:parentActivityName=".Menu"/>
         <activity android:name=".Menu" >
