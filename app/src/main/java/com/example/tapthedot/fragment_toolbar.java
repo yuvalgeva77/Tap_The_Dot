@@ -3,6 +3,7 @@ package com.example.tapthedot;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -52,6 +53,7 @@ public class fragment_toolbar extends Fragment {
     LocationCallback locationCallBack;
     private String HOME_ADRESS="http://192.168.0.101/";
     private String WORK_ADRESS="http://172.16.8.2/";
+    private BroadcastReceiver receiver;
 
     public interface FragmentAListener {
         void onInputASent(CharSequence input);
@@ -79,7 +81,6 @@ public class fragment_toolbar extends Fragment {
         shekel.loadUrl("http://192.168.0.101:80/");
 
         //gps
-        //location check definitions
         locationRequest = new LocationRequest();
         locationRequest.setInterval(1000 * 5);
         locationRequest.setFastestInterval(1000 * 5);
@@ -99,24 +100,28 @@ public class fragment_toolbar extends Fragment {
         updateGPS();
         startLocationUpdate();
 
-
         //wifi
-        String ssidName = getCurrentSsid(getContext());
-        wifiText.setText(ssidName);
+        getCurrentSsid(getContext());
+        receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                getCurrentSsid(getContext());
+            }
+        };
+        getActivity().registerReceiver(receiver, new IntentFilter(WifiManager.NETWORK_STATE_CHANGED_ACTION));
 
-
+//        wifiManager.setWifiEnabled(true);
         return v;
 
     }
 
 
-    public static String getCurrentSsid(Context context) {
+    public String getCurrentSsid(Context context) {
         WifiManager wifiManager = (WifiManager) context.getSystemService(context.WIFI_SERVICE);
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
         String ssid = wifiInfo.getSSID();
+        wifiText.setText(ssid);
         return ssid;
-
-
     }
 
     public void onReceive(Context context, Intent intent) {

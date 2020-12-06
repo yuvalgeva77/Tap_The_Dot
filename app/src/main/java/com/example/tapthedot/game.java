@@ -30,7 +30,7 @@ public class game extends AppCompatActivity implements fragment_toolbar.Fragment
     public static  ArrayList<tapData> TAP_DATA =null ;
     public static String USER_NAME ="" ;
     private int score;
-    private long time;
+    private double time;
     ArrayList<gameScore> scoreList;
     private fragment_toolbar toolbar;
     private  TextView scoreText;
@@ -128,8 +128,8 @@ public class game extends AppCompatActivity implements fragment_toolbar.Fragment
 
     }
 
-    private void startCoundown(long time) {
-        timer=new CountDownTimer(time*1000,1) {
+    private void startCoundown(double time) {
+        timer=new CountDownTimer((long)time*1000,1) {
 
             public void onTick(long millisUntilFinished) {
                 timeText.setText(String.format("%d:%2d ", millisUntilFinished/1000,(millisUntilFinished/10)%100));
