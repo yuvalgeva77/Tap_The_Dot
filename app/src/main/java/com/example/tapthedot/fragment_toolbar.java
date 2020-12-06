@@ -50,6 +50,8 @@ public class fragment_toolbar extends Fragment {
     private FusedLocationProviderClient fusedLocationProviderClient;
     LocationRequest locationRequest;
     LocationCallback locationCallBack;
+    private String HOME_ADRESS="http://192.168.0.101/";
+    private String WORK_ADRESS="http://172.16.8.2/";
 
     public interface FragmentAListener {
         void onInputASent(CharSequence input);
@@ -73,8 +75,8 @@ public class fragment_toolbar extends Fragment {
         webSettingsShekel.setJavaScriptEnabled(true);
         shekel.setWebViewClient(new Callback());
 
-        time.loadUrl("http://172.16.8.2:80/");
-        shekel.loadUrl("http://172.16.8.2:80/");
+        time.loadUrl(HOME_ADRESS);
+        shekel.loadUrl(HOME_ADRESS);
 
         //gps
         //location check definitions
