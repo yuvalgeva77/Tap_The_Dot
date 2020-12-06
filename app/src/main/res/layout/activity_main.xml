@@ -10,8 +10,8 @@
 
     <Button
         android:id="@+id/loginButton"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
+        android:layout_width="105dp"
+        android:layout_height="47dp"
         android:onClick="sendLoginInfo"
         android:text="@string/login"
         app:layout_constraintBottom_toBottomOf="parent"
