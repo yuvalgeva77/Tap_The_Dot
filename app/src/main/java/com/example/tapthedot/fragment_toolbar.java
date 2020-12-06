@@ -75,8 +75,8 @@ public class fragment_toolbar extends Fragment {
         webSettingsShekel.setJavaScriptEnabled(true);
         shekel.setWebViewClient(new Callback());
 
-        time.loadUrl(HOME_ADRESS);
-        shekel.loadUrl(HOME_ADRESS);
+        time.loadUrl("http://192.168.0.101:50/");
+        shekel.loadUrl("http://192.168.0.101:80/");
 
         //gps
         //location check definitions

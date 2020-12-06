@@ -1,35 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="match_parent"
-android:layout_height="60dp"
-android:background="@android:color/holo_blue_light"
-android:gravity="center_horizontal"
-android:orientation="horizontal"
-android:weightSum="4"
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="60dp"-->
+<!--android:background="@android:color/holo_blue_light"-->
+<!--android:gravity="center_horizontal"-->
+<!--android:orientation="horizontal"-->
+<!--android:weightSum="4"-->
 
-android:padding="16dp">
+<!--android:padding="16dp">-->
 
-    <TextView
-        android:id="@+id/wifiName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"/>
-    <TextView
-        android:id="@+id/gpsText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+<!--    <TextView-->
+<!--        android:id="@+id/wifiName"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_weight="1" />-->
 
-    <WebView
-        android:id="@+id/ShekelRate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"/>
-    <WebView
-        android:id="@+id/TimeText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+<!--    <TextView-->
+<!--        android:id="@+id/gpsText"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_weight="1" />-->
+
+<!--    <WebView-->
+<!--        android:id="@+id/ShekelRate"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_weight="1" />-->
+
+<!--    <WebView-->
+<!--        android:id="@+id/TimeText"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_weight="1" />-->
 
 
-</LinearLayout>
+<!--</LinearLayout>-->
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#DAE8FC"
+  >
+
+    <TableRow android:background="#0079D6"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <WebView
+            android:id="@+id/ShekelRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"></WebView>
+
+
+
+        <WebView
+            android:id="@+id/TimeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+             />
+    </TableRow>
+    <TableRow android:background="#0079D6"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:id="@+id/wifiName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+
+           />
+
+        <TextView
+            android:id="@+id/gpsText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+
+        />
+
+
+    </TableRow>
+
+</TableLayout>
