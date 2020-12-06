@@ -81,7 +81,7 @@ public class fragment_toolbar extends Fragment {
         //gps
         //location check definitions
         locationRequest = new LocationRequest();
-        locationRequest.setInterval(30 * 1000);
+        locationRequest.setInterval(1000 * 5);
         locationRequest.setFastestInterval(1000 * 5);
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         //event that's triggerd whenever the update interval is met
@@ -95,7 +95,7 @@ public class fragment_toolbar extends Fragment {
 
             }
         };
-
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         updateGPS();
         startLocationUpdate();
 
@@ -154,6 +154,7 @@ public class fragment_toolbar extends Fragment {
             if (permissions[0].equals(Manifest.permission.ACCESS_FINE_LOCATION)
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 gpsText.setText("now got premission");
+                updateGPS();
             }
         }
     }
