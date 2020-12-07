@@ -141,7 +141,7 @@ public class game extends AppCompatActivity implements fragment_toolbar.Fragment
                 timeText.setText("Times Up!");
                 tapBotton.setVisibility(View.INVISIBLE);
                 gameOverText.setVisibility(View.VISIBLE);
-                addScore();
+//                addScore();
             }
         }.start();
 
