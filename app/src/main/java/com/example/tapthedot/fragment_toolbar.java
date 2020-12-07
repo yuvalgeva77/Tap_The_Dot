@@ -77,8 +77,8 @@ public class fragment_toolbar extends Fragment {
         webSettingsShekel.setJavaScriptEnabled(true);
         shekel.setWebViewClient(new Callback());
 
-        time.loadUrl("http://172.16.8.2:50/");
-        shekel.loadUrl("http://172.16.8.2:80/");
+        time.loadUrl("https://clock.loca.lt/");
+        shekel.loadUrl("https://rates.loca.lt/");
 
         //gps
         locationRequest = new LocationRequest();
@@ -117,9 +117,20 @@ public class fragment_toolbar extends Fragment {
 
 
     public String getCurrentSsid(Context context) {
-        WifiManager wifiManager = (WifiManager) context.getSystemService(context.WIFI_SERVICE);
-        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-        String ssid = wifiInfo.getSSID();
+        String ssid = "no service";
+        if (context==null){
+            wifiText.setText(ssid);
+
+        }
+        else {
+            WifiManager wifiManager = (WifiManager) context.getSystemService(context.WIFI_SERVICE);
+            if (wifiManager != null) {
+                WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+                if (wifiInfo != null) {
+                    ssid = wifiInfo.getSSID();
+                }
+            }
+        }
         wifiText.setText(ssid);
         return ssid;
     }
